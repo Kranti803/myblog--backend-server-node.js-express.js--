@@ -40,7 +40,7 @@ app.use('/api/v1',adminRoutes);
 export default app;
 
 app.get('/',(req,res)=>{
-    res.send(`<h1>Site is working on <a href=${process.env.FRONTEND_URL}></a> `)
+    res.send(`<h1>Site is working on <a href=${process.env.FRONTEND_URL}></a></h1> `)
 })
 
 app.use(ErrorMiddleware);
