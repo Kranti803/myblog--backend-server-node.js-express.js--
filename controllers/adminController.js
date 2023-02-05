@@ -2,7 +2,7 @@ import { catchAsyncError } from '../middlewares/catchAsynError.js';
 import { ErrorHandler } from './../utils/ErrorHandler.js';
 import { User } from './../models/userModel.js';
 import { Blog } from './../models/blogModel.js';
-import { sendEmail } from '../../../mern/backend/utils/sendEmail.js';
+import { sendEmail } from './../utils/sendEmail.js';
 
 
 
