@@ -23,7 +23,7 @@ const blogSchema = new mongoose.Schema({
     category: {
         type: String,
         required: [true, "Please Select Product Category"],
-        
+        enum:["Adventure","Travel","Fashion","Technology"]
 
     },
     featured: {
