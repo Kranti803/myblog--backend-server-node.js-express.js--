@@ -11,7 +11,8 @@ import { User } from './../models/userModel.js';
 export const getAllBlogs = catchAsyncError(async (req, res, next) => {
 
     const search = req.query.search || '';
-    const category = req.query.category || 'All';
+    
+    const category = req.query.category || '';
 
 
     const blogs = await Blog.find({
