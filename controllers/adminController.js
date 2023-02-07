@@ -47,14 +47,16 @@ export const contactUs = catchAsyncError(async (req, res, next) => {
 // change role...
 export const changeRole = catchAsyncError(async (req, res, next) => {
 
-
-    const user = await User.findById(req.query.id);
+    const { id } = req.params;
+    const user = await User.findById(id);
+    
+    console.log(user);
 
     if (!user) return next(new ErrorHandler('User doesnot exists'));
 
 
-    if (user.role === 'user') user.role === 'admin';
-    else user.role === 'user';
+    if (user.role === 'user') user.role = 'admin';
+    else user.role = 'user';
 
     await user.save();
 

@@ -8,7 +8,7 @@ const router = express.Router();
 router.route('/admin/users').get(isAuthenticated,isAdmin,getAllUsers);
 
 //change role 
-router.route('/admin/changerole').put(isAuthenticated,isAdmin,changeRole);
+router.route('/admin/changerole/:id').put(isAuthenticated,isAdmin,changeRole);
 
 //change role 
 router.route('/admin/deleteUser').delete(isAuthenticated,isAdmin,deleteUser);
