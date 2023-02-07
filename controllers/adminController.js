@@ -53,8 +53,8 @@ export const changeRole = catchAsyncError(async (req, res, next) => {
     if (!user) return next(new ErrorHandler('User doesnot exists'));
 
 
-    if (user.role === 'user') user.role = 'admin';
-    else user.role = 'user';
+    if (user.role === 'user') user.role === 'admin';
+    else user.role === 'user';
 
     await user.save();
 
@@ -65,6 +65,7 @@ export const changeRole = catchAsyncError(async (req, res, next) => {
 
 })
 
+//delete User --admin
 export const deleteUser = catchAsyncError(async (req, res, next) => {
 
 
@@ -76,7 +77,6 @@ export const deleteUser = catchAsyncError(async (req, res, next) => {
 
     await User.findByIdAndDelete(req.query.id);
 
-    await User.save();
 
     res.status(200).json({
         success: true,
