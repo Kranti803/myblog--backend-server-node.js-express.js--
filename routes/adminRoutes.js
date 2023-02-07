@@ -1,5 +1,5 @@
 import express from 'express';
-import { changeFeatured, changeRole, contactUs, getAllUsers } from '../controllers/adminController.js';
+import { changeFeatured, changeRole, contactUs, deleteUser, getAllUsers } from '../controllers/adminController.js';
 import { isAuthenticated,isAdmin } from '../middlewares/auth.js';
 
 const router = express.Router();
@@ -9,6 +9,9 @@ router.route('/admin/users').get(isAuthenticated,isAdmin,getAllUsers);
 
 //change role 
 router.route('/admin/changerole').put(isAuthenticated,isAdmin,changeRole);
+
+//change role 
+router.route('/admin/deleteUser').delete(isAuthenticated,isAdmin,deleteUser);
 
 
 //change featured type 

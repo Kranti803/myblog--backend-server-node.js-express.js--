@@ -64,6 +64,26 @@ export const changeRole = catchAsyncError(async (req, res, next) => {
 
 })
 
+export const deleteUser = catchAsyncError(async (req, res, next) => {
+
+    
+    const user = await User.findById(req.query.id);
+
+    if(!user) return next(new ErrorHandler('User doesnot exists'));
+
+    await cloudinary.v2.uploader.destroy(user.avtar.public_id);
+
+    await User.findByIdAndDelete(req.query.id);
+    
+    await User.save();
+
+    res.status(200).json({
+        success: true,
+        message:"User deleted successfully",
+    })
+
+})
+
 
 // change blog featured type...
 export const changeFeatured = catchAsyncError(async (req, res, next) => {
