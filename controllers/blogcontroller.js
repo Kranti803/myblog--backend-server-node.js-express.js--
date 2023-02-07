@@ -11,18 +11,18 @@ import { User } from './../models/userModel.js';
 export const getAllBlogs = catchAsyncError(async (req, res, next) => {
 
     const search = req.query.search || '';
-    
+
     const category = req.query.category || '';
 
 
     const blogs = await Blog.find({
-        title:{
-            $regex:search,
-            $options:'i'
+        title: {
+            $regex: search,
+            $options: 'i'
         },
-        category:{
-            $regex:category,
-            $options:'i'
+        category: {
+            $regex: category,
+            $options: 'i'
         }
     });
 
@@ -34,8 +34,21 @@ export const getAllBlogs = catchAsyncError(async (req, res, next) => {
 
 
 
+//get single blog...
+export const getSingleBlog = catchAsyncError(async (req, res, next) => {
+
+    const { id } = req.params;
+
+    const blog = await Blog.findById(id);
+
+    if (!blog) return next(new ErrorHandler('Blog not found', 400));
 
 
+    res.status(200).json({
+        success: true,
+        blog
+    })
+})
 
 
 
@@ -80,7 +93,7 @@ export const deleteComments = catchAsyncError(async (req, res, next) => {
 
     const blog = await Blog.findById(id);
 
-    const comments = blog.comments.filter((comment)=> comment._id.toString() !== commentId.toString());
+    const comments = blog.comments.filter((comment) => comment._id.toString() !== commentId.toString());
 
     blog.comments = comments;
     await blog.save()

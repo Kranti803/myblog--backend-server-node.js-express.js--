@@ -1,12 +1,15 @@
 import express from 'express'
 import { isAdmin, isAuthenticated } from '../middlewares/auth.js';
-import { addComments, createNewBlog, deleteBlog, deleteComments, getAllBlogs, updateBlog } from './../controllers/blogcontroller.js';
+import { addComments, createNewBlog, deleteBlog, deleteComments, getAllBlogs, getSingleBlog, updateBlog } from './../controllers/blogcontroller.js';
 import { signleUpload } from './../middlewares/multer.js';
 
 const router = express.Router();
 
 //get all blogs...
 router.route('/blogs').get(getAllBlogs);
+
+//get single blog...
+router.route('/blog/:id').get(getSingleBlog);
 
 
 //add comments in blog posts...(both user and admin)
