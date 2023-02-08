@@ -39,7 +39,7 @@ export const getSingleBlog = catchAsyncError(async (req, res, next) => {
 
     const { id } = req.params;
 
-    const blog = await Blog.findById(id);
+    const blog = await Blog.findById(id).populate('user');
 
     if (!blog) return next(new ErrorHandler('Blog not found', 400));
 
