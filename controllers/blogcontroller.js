@@ -39,7 +39,7 @@ export const getSingleBlog = catchAsyncError(async (req, res, next) => {
 
     const { id } = req.params;
 
-    const blog = await Blog.findById(id).populate('user');
+    const blog = await Blog.findById(id);
 
     if (!blog) return next(new ErrorHandler('Blog not found', 400));
 
@@ -58,7 +58,7 @@ export const getSingleBlog = catchAsyncError(async (req, res, next) => {
 // add comments in blog Posts ....(both user and admin)
 export const addComments = catchAsyncError(async (req, res, next) => {
 
-    const { comment } = req.body;
+    const { comment, name, avtarUrl } = req.body;
 
     const { id } = req.params;
 
@@ -68,8 +68,14 @@ export const addComments = catchAsyncError(async (req, res, next) => {
 
     const blog = await Blog.findById(id);
 
+    const commentDetails = {
+            user: req.user.id,
+            name: req.user.name,
+            avtarUrl:req.user.avtar.url,
+            comment,
+        }
 
-    blog.comments.push({ user, comment });
+    blog.comments.push(commentDetails);
 
     await blog.save();
 
