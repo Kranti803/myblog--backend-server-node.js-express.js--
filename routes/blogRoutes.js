@@ -15,6 +15,7 @@ router.route('/blog/:id').get(getSingleBlog);
 //add comments in blog posts...(both user and admin)
 router.route('/blogs/addcomments/:id').post(isAuthenticated,addComments);
 
+
 //delete comments in blog posts...(both user and admin)
 router.route('/blogs/:id/deletecomments/:commentId').delete(isAuthenticated,deleteComments);
 

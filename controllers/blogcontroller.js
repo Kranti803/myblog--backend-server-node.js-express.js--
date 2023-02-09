@@ -69,11 +69,11 @@ export const addComments = catchAsyncError(async (req, res, next) => {
     const blog = await Blog.findById(id);
 
     const commentDetails = {
-            user: req.user.id,
-            name: req.user.name,
-            avtarUrl:req.user.avtar.url,
-            comment,
-        }
+        user: req.user.id,
+        name: req.user.name,
+        avtarUrl: req.user.avtar.url,
+        comment,
+    }
 
     blog.comments.push(commentDetails);
 
@@ -118,11 +118,6 @@ export const deleteComments = catchAsyncError(async (req, res, next) => {
 
 
 
-
-
-
-
-
 //create a new blog....admin
 export const createNewBlog = async (req, res, next) => {
 
@@ -132,6 +127,11 @@ export const createNewBlog = async (req, res, next) => {
 
     if (!title || !content || !category || !file) {
         return next(new ErrorHandler('Please fill all the data', 400));
+    }
+
+    const author = {
+        name:req.user.name,
+        avtarUrl:req.user.avtar.url
     }
 
 
@@ -147,7 +147,8 @@ export const createNewBlog = async (req, res, next) => {
         poster: {
             public_id: myCloud.public_id,
             url: myCloud.secure_url
-        }
+        },
+        author
     })
 
     res.status(201).json({

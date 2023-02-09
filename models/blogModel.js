@@ -31,6 +31,15 @@ const blogSchema = new mongoose.Schema({
         default: false
 
     },
+    author: {
+        name: {
+            type: String
+        },
+        avtarUrl: {
+            type: String,
+        }
+
+    },
     comments: [
         {
             user: {
