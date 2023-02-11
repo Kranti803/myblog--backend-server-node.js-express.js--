@@ -23,7 +23,7 @@ router.route('/blogs/:id/deletecomments/:commentId').delete(isAuthenticated,dele
 // create new blog --admin
 router.route('/create').post(isAuthenticated,isAdmin,signleUpload,createNewBlog);
 
-// create new blog --admin
+// update a blog --admin
 router.route('/update/:id').put(isAuthenticated,isAdmin,signleUpload,updateBlog);
 
 // delete a blog --admin
