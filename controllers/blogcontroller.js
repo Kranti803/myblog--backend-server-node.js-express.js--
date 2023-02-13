@@ -22,7 +22,6 @@ export const getAllBlogs = catchAsyncError(async (req, res, next) => {
         },
         category: {
             $regex: category,
-            $options: 'i'
         }
     });
 
@@ -58,7 +57,7 @@ export const getSingleBlog = catchAsyncError(async (req, res, next) => {
 // add comments in blog Posts ....(both user and admin)
 export const addComments = catchAsyncError(async (req, res, next) => {
 
-    const { comment, name, avtarUrl } = req.body;
+    const { comment } = req.body;
 
     const { id } = req.params;
 
